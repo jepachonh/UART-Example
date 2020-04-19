@@ -24,11 +24,11 @@ Section 6.4 del manual de referencia.
 
 Para habilitar el clock que se encarga del USART es necesario conocer cual es el BUS de datos que conecta este modulo para setear el registro correspondiente. Para ver esto, se debe mirar en el manual o datasheet del micro (STM32L476RGT6U) Tabla 19.
 
-![Imagen tabla 19](https://github.com/jepachonh/UART-Example/blob/master/clock%20usart.png)
+![Imagen tabla 19](https://github.com/jepachonh/UART-Example/blob/master/pictures/clock%20usart.png)
 
 Conociendo que registro se debe modificar, vamos a la seccion 6.4 RCC registers del manual de referencia de la tarjeta para ver como se debe modificar el registro APB1 y habilitarlo.
 
-![Registro RCC-APB1](https://github.com/jepachonh/UART-Example/blob/master/enclkusart.png)
+![Registro RCC-APB1](https://github.com/jepachonh/UART-Example/blob/master/pictures/enclkusart.png)
 
 Para habilitar USART2 es necesario establecer un 1 en el bit 17 del registro.
 
@@ -37,11 +37,11 @@ Section 6.4 del manual de referencia.
 
 Para habilitar el clock que se encarga de los perifericos GPIO es necesario conocer cual es el BUS de datos que conecta este modulo para setear el registro correspondiente. Para ver esto, se debe mirar en el manual o datasheet del micro (STM32L476RGT6U) Tabla 19.
 
-![Imagen tabla 19](https://github.com/jepachonh/UART-Example/blob/master/clock%20GPIOA.png)
+![Imagen tabla 19](https://github.com/jepachonh/UART-Example/blob/master/pictures/clock%20GPIOA.png)
 
 Conociendo que registro se debe modificar, vamos a la seccion 6.4 RCC registers del manual de referencia de la tarjeta para ver como se debe modificar el registro AHB2 y habilitarlo.
 
-![Registro RCC-AHB2](https://github.com/jepachonh/UART-Example/blob/master/enclkgpio.png)
+![Registro RCC-AHB2](https://github.com/jepachonh/UART-Example/blob/master/pictures/enclkgpio.png)
 
 Para habilitar GPIOA es necesario establecer un 1 en el bit 0 del registro.
 
@@ -50,7 +50,7 @@ Section 8.4 del manual de referencia.
 
 El registro MODER es el encargado de definir como va a trabajar el pin elegido, para nuestro caso de estudio, es necesario definir los pines 2 y 3 del puerto A en la funcion alternate.
 
-![Registro GPIOx-MODER](https://github.com/jepachonh/UART-Example/blob/master/moderA.png)
+![Registro GPIOx-MODER](https://github.com/jepachonh/UART-Example/blob/master/pictures/moderA.png)
 
 Para settear estos pines con la funcion alternate es necesario poner 10 en los bits 5-4 y 7-6.
 
@@ -59,7 +59,7 @@ Section 6.4 del manual de referencia.
 
 El registro OSPEEDR es el encargado de definir la velocidad de como va a trabajar el pin elegido, para nuestro caso de estudio, es necesario definir esta velocidad en los pines 2 y 3 del puerto A como high speed.
 
-![Registro GPIOx-OSPEEDR](https://github.com/jepachonh/UART-Example/blob/master/OSPEED.png)
+![Registro GPIOx-OSPEEDR](https://github.com/jepachonh/UART-Example/blob/master/pictures/OSPEED.png)
 
 Para settear estos pines con la funcion high speed es necesario poner 10 en los bits 5-4 y 7-6.
 
@@ -68,13 +68,13 @@ Section 8.4 del manual de referencia.
 
 Hay algunos I/O pines que pueden ser configurados de diferentes maneras debido a que pueden desarrollar diferentes tareas. Por ejemplo, en nuestro caso, al querer utilizar el USART2 que corresponde a los pines PA2 y PA3, podemos ver que estos pines ademas de poder ser configurados como GPIO, se pueden configurar tambien como Timmers y USART.
 
-![PA2,PA3- Alternate Functions](https://github.com/jepachonh/UART-Example/blob/master/AF7.png)
+![PA2,PA3- Alternate Functions](https://github.com/jepachonh/UART-Example/blob/master/pictures/AF7.png)
 
 De esta forma, es necesario configurar el registro AFR (Alternate function register), este registro esta dividido en dos partes -> AFRL y AFRH. El primero funciona para los primeros 8 puertos (PA0-PA7) y el segundo para los ultimos 8 puertos (PA8-PA15).
 
 Como se puede evidenciar en la imagen anterior, para definir el modo USART en los PA2 y PA3, es necesario configurar AF7 en el registro.
 
-![PA2,PA3- Alternate Functions](https://github.com/jepachonh/UART-Example/blob/master/AF7registro.png)
+![PA2,PA3- Alternate Functions](https://github.com/jepachonh/UART-Example/blob/master/pictures/AF7registro.png)
 
 Para settear estos pines con AF7 es necesario poner 0111 (7hex) en el registro, en la parte correspondiente a los puertos 2 y 3.(AFSEL3,AFSEL2).
 
@@ -86,9 +86,9 @@ inital bits, stop bits, message bits, parity (even,odd,none),HWcontrol, Baudrate
 
 Para configurar estos parametros es necesario modificar los siguientes registros: CR1,CR2 y BRR que son los registros encargados de manejar la comunicacion USART.
 
-![USART configuration](https://github.com/jepachonh/UART-Example/blob/master/CR1.png)
-![USART configuration](https://github.com/jepachonh/UART-Example/blob/master/CR2.png)
-![USART configuration](https://github.com/jepachonh/UART-Example/blob/master/BRR.png)
+![USART configuration](https://github.com/jepachonh/UART-Example/blob/master/pictures/CR1.png)
+![USART configuration](https://github.com/jepachonh/UART-Example/blob/master/pictures/CR2.png)
+![USART configuration](https://github.com/jepachonh/UART-Example/blob/master/pictures/BRR.png)
 
 ### Paso 6.Set UART word length and parity en CR1 register.
 Para modificar estos parametros se deben modificar los bits 28 o 12 para el word length y el bit 10 para el parity.
@@ -112,7 +112,7 @@ Debido a que se va a utilizar UART es necesario configurar el baud rate de comun
 
 Para hacer esta configuracion se debe hacer unos calculos teniendo en cuenta la frecuencia del reloj y el BAUD RATE al que se quiera trasmitir/recibir.
 
-![BaudRate configuration](https://github.com/jepachonh/UART-Example/blob/master/Baudrate.png)
+![BaudRate configuration](https://github.com/jepachonh/UART-Example/blob/master/pictures/Baudrate.png)
 
 En nuestro caso de estudio, se desea obtener un baud rate de 9600bps.
 
@@ -196,7 +196,7 @@ Para esto se deben seguir los siguientes pasos.
 # Paso 1.Abrir el Cube ioc para configurar los pines.
 En esta parte, se deben configurar el USART y sus parametros, y habilitar los pines del GPIOA.
 
-![CubeIDE IOC configuration](https://github.com/jepachonh/UART-Example/blob/master/IOC.png)
+![CubeIDE IOC configuration](https://github.com/jepachonh/UART-Example/blob/master/pictures/IOC.png)
 
 # Paso 1. General el codigo.
 Para generar el codigo luego de haber configurado los parametros, se debe guardar el archivo y dar clic en la opcion _Device Configuration Tool Code Generation_.
@@ -241,7 +241,7 @@ HAL_UART_Transmit(&huart2, "Hello world\n\r",13, HAL_MAX_DELAY);
 Configurar otro de los modulos UART/USART para trasmitir datos.
 
 ## Descargar ejemplo
-En el enlace UART-Example puede descargar la carpeta con los ejercicios.
+En el enlace [UART-Example](https://github.com/jepachonh/UART-Example) puede descargar la carpeta con los ejercicios y dando clic [aqui](https://github.com/jepachonh/UART-Example/archive/master.zip).
 
 
 
