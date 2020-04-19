@@ -241,7 +241,7 @@ HAL_UART_Transmit(&huart2, "Hello world\n\r",13, HAL_MAX_DELAY);
 Configurar otro de los modulos UART/USART para trasmitir datos.
 
 ## Descargar ejemplo
-En el enlace [UART-Example](https://github.com/jepachonh/UART-Example) puede descargar la carpeta con los ejercicios.
+En el enlace [UART-Example](https://github.com/jepachonh/UART-Example) puede descargar la carpeta con los ejercicios y dando clic [aqui](https://github.com/jepachonh/UART-Example/archive/master.zip).
 
 
 
