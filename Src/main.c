@@ -38,9 +38,9 @@ int main(void)
     /*
      * formula para calcular el Baudrate
      * TX/RX BR = Fclk/(USARTDIV)
-     * 8MHz internal clock by default
-     * TX/RX BR = 8000000/9600=833.33
-     * 833.33d = 0341hex
+     * 4MHz internal clock by default
+     * TX/RX BR = 4000000/9600=833.33
+     * 416.16d = 01A0hex
      */
     USART2->BRR |= 0x01A0;
     // Enable USART2  UE, bit 0
