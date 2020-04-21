@@ -5,45 +5,45 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   00000188  08000000  08000000  00010000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         00000208  08000188  08000188  00010188  2**2
+  1 .text         00000200  08000188  08000188  00010188  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000010  08000390  08000390  00010390  2**2
+  2 .rodata       00000010  08000388  08000388  00010388  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  080003a0  080003a0  000103b0  2**0
+  3 .ARM.extab    00000000  08000398  08000398  000103a8  2**0
                   CONTENTS
-  4 .ARM          00000000  080003a0  080003a0  000103b0  2**0
+  4 .ARM          00000000  08000398  08000398  000103a8  2**0
                   CONTENTS
-  5 .preinit_array 00000000  080003a0  080003b0  000103b0  2**0
+  5 .preinit_array 00000000  08000398  080003a8  000103a8  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000008  080003a0  080003a0  000103a0  2**2
+  6 .init_array   00000008  08000398  08000398  00010398  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000008  080003a8  080003a8  000103a8  2**2
+  7 .fini_array   00000008  080003a0  080003a0  000103a0  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         00000000  20000000  20000000  000103b0  2**0
+  8 .data         00000000  20000000  20000000  000103a8  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00000020  20000000  080003b0  00020000  2**2
+  9 .bss          00000020  20000000  080003a8  00020000  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  20000020  080003b0  00020020  2**0
+ 10 ._user_heap_stack 00000600  20000020  080003a8  00020020  2**0
                   ALLOC
- 11 .ARM.attributes 00000030  00000000  00000000  000103b0  2**0
+ 11 .ARM.attributes 00000030  00000000  00000000  000103a8  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00000579  00000000  00000000  000103e0  2**0
+ 12 .debug_info   00000579  00000000  00000000  000103d8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_abbrev 00000109  00000000  00000000  00010959  2**0
+ 13 .debug_abbrev 00000109  00000000  00000000  00010951  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_aranges 00000048  00000000  00000000  00010a68  2**3
+ 14 .debug_aranges 00000048  00000000  00000000  00010a60  2**3
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_ranges 00000030  00000000  00000000  00010ab0  2**3
+ 15 .debug_ranges 00000030  00000000  00000000  00010aa8  2**3
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_macro  0001c326  00000000  00000000  00010ae0  2**0
+ 16 .debug_macro  0001c326  00000000  00000000  00010ad8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   00000594  00000000  00000000  0002ce06  2**0
+ 17 .debug_line   00000594  00000000  00000000  0002cdfe  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    0009df46  00000000  00000000  0002d39a  2**0
+ 18 .debug_str    0009df46  00000000  00000000  0002d392  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  000cb2e0  2**0
+ 19 .comment      0000007b  00000000  00000000  000cb2d8  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0000005c  00000000  00000000  000cb35c  2**2
+ 20 .debug_frame  0000005c  00000000  00000000  000cb354  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -62,7 +62,7 @@ Disassembly of section .text:
  800019e:	bd10      	pop	{r4, pc}
  80001a0:	20000000 	.word	0x20000000
  80001a4:	00000000 	.word	0x00000000
- 80001a8:	08000374 	.word	0x08000374
+ 80001a8:	08000370 	.word	0x08000370
 
 080001ac <frame_dummy>:
  80001ac:	b508      	push	{r3, lr}
@@ -74,7 +74,7 @@ Disassembly of section .text:
  80001ba:	bd08      	pop	{r3, pc}
  80001bc:	00000000 	.word	0x00000000
  80001c0:	20000004 	.word	0x20000004
- 80001c4:	08000374 	.word	0x08000374
+ 80001c4:	08000370 	.word	0x08000370
 
 080001c8 <main>:
 /*************************************************
@@ -89,16 +89,16 @@ int main(void)
 
 	// Enable GPIOA Peripheral Clock (bit 0 in AHB2ENR register)
 	RCC->AHB2ENR |= (1 << 0);
- 80001ce:	4b3e      	ldr	r3, [pc, #248]	; (80002c8 <main+0x100>)
+ 80001ce:	4b3d      	ldr	r3, [pc, #244]	; (80002c4 <main+0xfc>)
  80001d0:	6cdb      	ldr	r3, [r3, #76]	; 0x4c
- 80001d2:	4a3d      	ldr	r2, [pc, #244]	; (80002c8 <main+0x100>)
+ 80001d2:	4a3c      	ldr	r2, [pc, #240]	; (80002c4 <main+0xfc>)
  80001d4:	f043 0301 	orr.w	r3, r3, #1
  80001d8:	64d3      	str	r3, [r2, #76]	; 0x4c
 	//Enable peripheral clock for USART2 (bit 17 in 1 in APB1ENR1 register)
 	RCC->APB1ENR1 |= (1 << 17);
- 80001da:	4b3b      	ldr	r3, [pc, #236]	; (80002c8 <main+0x100>)
+ 80001da:	4b3a      	ldr	r3, [pc, #232]	; (80002c4 <main+0xfc>)
  80001dc:	6d9b      	ldr	r3, [r3, #88]	; 0x58
- 80001de:	4a3a      	ldr	r2, [pc, #232]	; (80002c8 <main+0x100>)
+ 80001de:	4a39      	ldr	r2, [pc, #228]	; (80002c4 <main+0xfc>)
  80001e0:	f443 3300 	orr.w	r3, r3, #131072	; 0x20000
  80001e4:	6593      	str	r3, [r2, #88]	; 0x58
 
@@ -137,35 +137,35 @@ int main(void)
 
 	// Set USART2 word length
 	USART2->CR1 |= 0x00001000;		//word length define with 8bits
- 800022a:	4b28      	ldr	r3, [pc, #160]	; (80002cc <main+0x104>)
+ 800022a:	4b27      	ldr	r3, [pc, #156]	; (80002c8 <main+0x100>)
  800022c:	681b      	ldr	r3, [r3, #0]
- 800022e:	4a27      	ldr	r2, [pc, #156]	; (80002cc <main+0x104>)
+ 800022e:	4a26      	ldr	r2, [pc, #152]	; (80002c8 <main+0x100>)
  8000230:	f443 5380 	orr.w	r3, r3, #4096	; 0x1000
  8000234:	6013      	str	r3, [r2, #0]
 	// Set USART2 Parity control bit
 	USART2->CR1 |= (0 << 10);
- 8000236:	4b25      	ldr	r3, [pc, #148]	; (80002cc <main+0x104>)
- 8000238:	4a24      	ldr	r2, [pc, #144]	; (80002cc <main+0x104>)
+ 8000236:	4b24      	ldr	r3, [pc, #144]	; (80002c8 <main+0x100>)
+ 8000238:	4a23      	ldr	r2, [pc, #140]	; (80002c8 <main+0x100>)
  800023a:	681b      	ldr	r3, [r3, #0]
  800023c:	6013      	str	r3, [r2, #0]
 	// Set USART2 stop bits
 	USART2->CR2 |= (0b00 << 12);
- 800023e:	4b23      	ldr	r3, [pc, #140]	; (80002cc <main+0x104>)
- 8000240:	4a22      	ldr	r2, [pc, #136]	; (80002cc <main+0x104>)
+ 800023e:	4b22      	ldr	r3, [pc, #136]	; (80002c8 <main+0x100>)
+ 8000240:	4a21      	ldr	r2, [pc, #132]	; (80002c8 <main+0x100>)
  8000242:	685b      	ldr	r3, [r3, #4]
  8000244:	6053      	str	r3, [r2, #4]
     // USART2 tx enable, TE bit 3
     USART2->CR1 |= (1 << 3);
- 8000246:	4b21      	ldr	r3, [pc, #132]	; (80002cc <main+0x104>)
+ 8000246:	4b20      	ldr	r3, [pc, #128]	; (80002c8 <main+0x100>)
  8000248:	681b      	ldr	r3, [r3, #0]
- 800024a:	4a20      	ldr	r2, [pc, #128]	; (80002cc <main+0x104>)
+ 800024a:	4a1f      	ldr	r2, [pc, #124]	; (80002c8 <main+0x100>)
  800024c:	f043 0308 	orr.w	r3, r3, #8
  8000250:	6013      	str	r3, [r2, #0]
     // USART2 rx enable, RE bit 2
     USART2->CR1 |= (1 << 2);
- 8000252:	4b1e      	ldr	r3, [pc, #120]	; (80002cc <main+0x104>)
+ 8000252:	4b1d      	ldr	r3, [pc, #116]	; (80002c8 <main+0x100>)
  8000254:	681b      	ldr	r3, [r3, #0]
- 8000256:	4a1d      	ldr	r2, [pc, #116]	; (80002cc <main+0x104>)
+ 8000256:	4a1c      	ldr	r2, [pc, #112]	; (80002c8 <main+0x100>)
  8000258:	f043 0304 	orr.w	r3, r3, #4
  800025c:	6013      	str	r3, [r2, #0]
      * TX/RX BR = Fclk/(USARTDIV)
@@ -173,228 +173,225 @@ int main(void)
      * TX/RX BR = 8000000/9600=833.33
      * 833.33d = 0341hex
      */
-    USART2->BRR |= 0x0341;
- 800025e:	4b1b      	ldr	r3, [pc, #108]	; (80002cc <main+0x104>)
+    USART2->BRR |= 0x01A0;
+ 800025e:	4b1a      	ldr	r3, [pc, #104]	; (80002c8 <main+0x100>)
  8000260:	68db      	ldr	r3, [r3, #12]
- 8000262:	4a1a      	ldr	r2, [pc, #104]	; (80002cc <main+0x104>)
- 8000264:	f443 7350 	orr.w	r3, r3, #832	; 0x340
- 8000268:	f043 0301 	orr.w	r3, r3, #1
- 800026c:	60d3      	str	r3, [r2, #12]
+ 8000262:	4a19      	ldr	r2, [pc, #100]	; (80002c8 <main+0x100>)
+ 8000264:	f443 73d0 	orr.w	r3, r3, #416	; 0x1a0
+ 8000268:	60d3      	str	r3, [r2, #12]
     // Enable USART2  UE, bit 0
     USART2->CR1 |= (1 << 0);
- 800026e:	4b17      	ldr	r3, [pc, #92]	; (80002cc <main+0x104>)
- 8000270:	681b      	ldr	r3, [r3, #0]
- 8000272:	4a16      	ldr	r2, [pc, #88]	; (80002cc <main+0x104>)
- 8000274:	f043 0301 	orr.w	r3, r3, #1
- 8000278:	6013      	str	r3, [r2, #0]
+ 800026a:	4b17      	ldr	r3, [pc, #92]	; (80002c8 <main+0x100>)
+ 800026c:	681b      	ldr	r3, [r3, #0]
+ 800026e:	4a16      	ldr	r2, [pc, #88]	; (80002c8 <main+0x100>)
+ 8000270:	f043 0301 	orr.w	r3, r3, #1
+ 8000274:	6013      	str	r3, [r2, #0]
 
    const uint8_t mensaje[] = "hello world\n\r";
- 800027a:	4b15      	ldr	r3, [pc, #84]	; (80002d0 <main+0x108>)
- 800027c:	463c      	mov	r4, r7
- 800027e:	cb0f      	ldmia	r3, {r0, r1, r2, r3}
- 8000280:	c407      	stmia	r4!, {r0, r1, r2}
- 8000282:	8023      	strh	r3, [r4, #0]
+ 8000276:	4b15      	ldr	r3, [pc, #84]	; (80002cc <main+0x104>)
+ 8000278:	463c      	mov	r4, r7
+ 800027a:	cb0f      	ldmia	r3, {r0, r1, r2, r3}
+ 800027c:	c407      	stmia	r4!, {r0, r1, r2}
+ 800027e:	8023      	strh	r3, [r4, #0]
 
     while(1)
     {
     	for (uint32_t i=0; i<sizeof(mensaje); i++){
- 8000284:	2300      	movs	r3, #0
- 8000286:	617b      	str	r3, [r7, #20]
- 8000288:	e01a      	b.n	80002c0 <main+0xf8>
+ 8000280:	2300      	movs	r3, #0
+ 8000282:	617b      	str	r3, [r7, #20]
+ 8000284:	e01a      	b.n	80002bc <main+0xf4>
     		// send character
     		USART2->TDR = mensaje[i];
- 800028a:	463a      	mov	r2, r7
- 800028c:	697b      	ldr	r3, [r7, #20]
- 800028e:	4413      	add	r3, r2
- 8000290:	781a      	ldrb	r2, [r3, #0]
- 8000292:	4b0e      	ldr	r3, [pc, #56]	; (80002cc <main+0x104>)
- 8000294:	b292      	uxth	r2, r2
- 8000296:	851a      	strh	r2, [r3, #40]	; 0x28
+ 8000286:	463a      	mov	r2, r7
+ 8000288:	697b      	ldr	r3, [r7, #20]
+ 800028a:	4413      	add	r3, r2
+ 800028c:	781a      	ldrb	r2, [r3, #0]
+ 800028e:	4b0e      	ldr	r3, [pc, #56]	; (80002c8 <main+0x100>)
+ 8000290:	b292      	uxth	r2, r2
+ 8000292:	851a      	strh	r2, [r3, #40]	; 0x28
     		// wait for transmit complete
     		while(!(USART2->ISR & (1 << 6)));
- 8000298:	bf00      	nop
- 800029a:	4b0c      	ldr	r3, [pc, #48]	; (80002cc <main+0x104>)
- 800029c:	69db      	ldr	r3, [r3, #28]
- 800029e:	f003 0340 	and.w	r3, r3, #64	; 0x40
- 80002a2:	2b00      	cmp	r3, #0
- 80002a4:	d0f9      	beq.n	800029a <main+0xd2>
+ 8000294:	bf00      	nop
+ 8000296:	4b0c      	ldr	r3, [pc, #48]	; (80002c8 <main+0x100>)
+ 8000298:	69db      	ldr	r3, [r3, #28]
+ 800029a:	f003 0340 	and.w	r3, r3, #64	; 0x40
+ 800029e:	2b00      	cmp	r3, #0
+ 80002a0:	d0f9      	beq.n	8000296 <main+0xce>
     		// slow down
     		for(int i=0; i<1000000; i++);
- 80002a6:	2300      	movs	r3, #0
- 80002a8:	613b      	str	r3, [r7, #16]
- 80002aa:	e002      	b.n	80002b2 <main+0xea>
- 80002ac:	693b      	ldr	r3, [r7, #16]
- 80002ae:	3301      	adds	r3, #1
- 80002b0:	613b      	str	r3, [r7, #16]
- 80002b2:	693b      	ldr	r3, [r7, #16]
- 80002b4:	4a07      	ldr	r2, [pc, #28]	; (80002d4 <main+0x10c>)
- 80002b6:	4293      	cmp	r3, r2
- 80002b8:	ddf8      	ble.n	80002ac <main+0xe4>
+ 80002a2:	2300      	movs	r3, #0
+ 80002a4:	613b      	str	r3, [r7, #16]
+ 80002a6:	e002      	b.n	80002ae <main+0xe6>
+ 80002a8:	693b      	ldr	r3, [r7, #16]
+ 80002aa:	3301      	adds	r3, #1
+ 80002ac:	613b      	str	r3, [r7, #16]
+ 80002ae:	693b      	ldr	r3, [r7, #16]
+ 80002b0:	4a07      	ldr	r2, [pc, #28]	; (80002d0 <main+0x108>)
+ 80002b2:	4293      	cmp	r3, r2
+ 80002b4:	ddf8      	ble.n	80002a8 <main+0xe0>
     	for (uint32_t i=0; i<sizeof(mensaje); i++){
- 80002ba:	697b      	ldr	r3, [r7, #20]
- 80002bc:	3301      	adds	r3, #1
- 80002be:	617b      	str	r3, [r7, #20]
- 80002c0:	697b      	ldr	r3, [r7, #20]
- 80002c2:	2b0d      	cmp	r3, #13
- 80002c4:	d9e1      	bls.n	800028a <main+0xc2>
- 80002c6:	e7dd      	b.n	8000284 <main+0xbc>
- 80002c8:	40021000 	.word	0x40021000
- 80002cc:	40004400 	.word	0x40004400
- 80002d0:	08000390 	.word	0x08000390
- 80002d4:	000f423f 	.word	0x000f423f
+ 80002b6:	697b      	ldr	r3, [r7, #20]
+ 80002b8:	3301      	adds	r3, #1
+ 80002ba:	617b      	str	r3, [r7, #20]
+ 80002bc:	697b      	ldr	r3, [r7, #20]
+ 80002be:	2b0d      	cmp	r3, #13
+ 80002c0:	d9e1      	bls.n	8000286 <main+0xbe>
+ 80002c2:	e7dd      	b.n	8000280 <main+0xb8>
+ 80002c4:	40021000 	.word	0x40021000
+ 80002c8:	40004400 	.word	0x40004400
+ 80002cc:	08000388 	.word	0x08000388
+ 80002d0:	000f423f 	.word	0x000f423f
 
-080002d8 <Reset_Handler>:
+080002d4 <Reset_Handler>:
 
   .section .text.Reset_Handler
   .weak Reset_Handler
   .type Reset_Handler, %function
 Reset_Handler:
   ldr   r0, =_estack
- 80002d8:	480d      	ldr	r0, [pc, #52]	; (8000310 <LoopForever+0x2>)
+ 80002d4:	480d      	ldr	r0, [pc, #52]	; (800030c <LoopForever+0x2>)
   mov   sp, r0          /* set stack pointer */
- 80002da:	4685      	mov	sp, r0
+ 80002d6:	4685      	mov	sp, r0
 
 /* Copy the data segment initializers from flash to SRAM */
   ldr r0, =_sdata
- 80002dc:	480d      	ldr	r0, [pc, #52]	; (8000314 <LoopForever+0x6>)
+ 80002d8:	480d      	ldr	r0, [pc, #52]	; (8000310 <LoopForever+0x6>)
   ldr r1, =_edata
- 80002de:	490e      	ldr	r1, [pc, #56]	; (8000318 <LoopForever+0xa>)
+ 80002da:	490e      	ldr	r1, [pc, #56]	; (8000314 <LoopForever+0xa>)
   ldr r2, =_sidata
- 80002e0:	4a0e      	ldr	r2, [pc, #56]	; (800031c <LoopForever+0xe>)
+ 80002dc:	4a0e      	ldr	r2, [pc, #56]	; (8000318 <LoopForever+0xe>)
   movs r3, #0
- 80002e2:	2300      	movs	r3, #0
+ 80002de:	2300      	movs	r3, #0
   b LoopCopyDataInit
- 80002e4:	e002      	b.n	80002ec <LoopCopyDataInit>
+ 80002e0:	e002      	b.n	80002e8 <LoopCopyDataInit>
 
-080002e6 <CopyDataInit>:
+080002e2 <CopyDataInit>:
 
 CopyDataInit:
   ldr r4, [r2, r3]
- 80002e6:	58d4      	ldr	r4, [r2, r3]
+ 80002e2:	58d4      	ldr	r4, [r2, r3]
   str r4, [r0, r3]
- 80002e8:	50c4      	str	r4, [r0, r3]
+ 80002e4:	50c4      	str	r4, [r0, r3]
   adds r3, r3, #4
- 80002ea:	3304      	adds	r3, #4
+ 80002e6:	3304      	adds	r3, #4
 
-080002ec <LoopCopyDataInit>:
+080002e8 <LoopCopyDataInit>:
 
 LoopCopyDataInit:
   adds r4, r0, r3
- 80002ec:	18c4      	adds	r4, r0, r3
+ 80002e8:	18c4      	adds	r4, r0, r3
   cmp r4, r1
- 80002ee:	428c      	cmp	r4, r1
+ 80002ea:	428c      	cmp	r4, r1
   bcc CopyDataInit
- 80002f0:	d3f9      	bcc.n	80002e6 <CopyDataInit>
+ 80002ec:	d3f9      	bcc.n	80002e2 <CopyDataInit>
 
 /* Zero fill the bss segment. */
   ldr r2, =_sbss
- 80002f2:	4a0b      	ldr	r2, [pc, #44]	; (8000320 <LoopForever+0x12>)
+ 80002ee:	4a0b      	ldr	r2, [pc, #44]	; (800031c <LoopForever+0x12>)
   ldr r4, =_ebss
- 80002f4:	4c0b      	ldr	r4, [pc, #44]	; (8000324 <LoopForever+0x16>)
+ 80002f0:	4c0b      	ldr	r4, [pc, #44]	; (8000320 <LoopForever+0x16>)
   movs r3, #0
- 80002f6:	2300      	movs	r3, #0
+ 80002f2:	2300      	movs	r3, #0
   b LoopFillZerobss
- 80002f8:	e001      	b.n	80002fe <LoopFillZerobss>
+ 80002f4:	e001      	b.n	80002fa <LoopFillZerobss>
 
-080002fa <FillZerobss>:
+080002f6 <FillZerobss>:
 
 FillZerobss:
   str  r3, [r2]
- 80002fa:	6013      	str	r3, [r2, #0]
+ 80002f6:	6013      	str	r3, [r2, #0]
   adds r2, r2, #4
- 80002fc:	3204      	adds	r2, #4
+ 80002f8:	3204      	adds	r2, #4
 
-080002fe <LoopFillZerobss>:
+080002fa <LoopFillZerobss>:
 
 LoopFillZerobss:
   cmp r2, r4
- 80002fe:	42a2      	cmp	r2, r4
+ 80002fa:	42a2      	cmp	r2, r4
   bcc FillZerobss
- 8000300:	d3fb      	bcc.n	80002fa <FillZerobss>
+ 80002fc:	d3fb      	bcc.n	80002f6 <FillZerobss>
 
 /* Call the clock system intitialization function.*/
   bl  SystemInit
- 8000302:	f3af 8000 	nop.w
+ 80002fe:	f3af 8000 	nop.w
 /* Call static constructors */
   bl __libc_init_array
- 8000306:	f000 f811 	bl	800032c <__libc_init_array>
+ 8000302:	f000 f811 	bl	8000328 <__libc_init_array>
 /* Call the application's entry point.*/
   bl main
- 800030a:	f7ff ff5d 	bl	80001c8 <main>
+ 8000306:	f7ff ff5f 	bl	80001c8 <main>
 
-0800030e <LoopForever>:
+0800030a <LoopForever>:
 
 LoopForever:
     b LoopForever
- 800030e:	e7fe      	b.n	800030e <LoopForever>
+ 800030a:	e7fe      	b.n	800030a <LoopForever>
   ldr   r0, =_estack
- 8000310:	20018000 	.word	0x20018000
+ 800030c:	20018000 	.word	0x20018000
   ldr r0, =_sdata
- 8000314:	20000000 	.word	0x20000000
+ 8000310:	20000000 	.word	0x20000000
   ldr r1, =_edata
- 8000318:	20000000 	.word	0x20000000
+ 8000314:	20000000 	.word	0x20000000
   ldr r2, =_sidata
- 800031c:	080003b0 	.word	0x080003b0
+ 8000318:	080003a8 	.word	0x080003a8
   ldr r2, =_sbss
- 8000320:	20000000 	.word	0x20000000
+ 800031c:	20000000 	.word	0x20000000
   ldr r4, =_ebss
- 8000324:	20000020 	.word	0x20000020
+ 8000320:	20000020 	.word	0x20000020
 
-08000328 <ADC1_2_IRQHandler>:
+08000324 <ADC1_2_IRQHandler>:
  * @retval : None
 */
   .section .text.Default_Handler,"ax",%progbits
 Default_Handler:
 Infinite_Loop:
   b Infinite_Loop
- 8000328:	e7fe      	b.n	8000328 <ADC1_2_IRQHandler>
+ 8000324:	e7fe      	b.n	8000324 <ADC1_2_IRQHandler>
 	...
 
-0800032c <__libc_init_array>:
- 800032c:	b570      	push	{r4, r5, r6, lr}
- 800032e:	4e0d      	ldr	r6, [pc, #52]	; (8000364 <__libc_init_array+0x38>)
- 8000330:	4c0d      	ldr	r4, [pc, #52]	; (8000368 <__libc_init_array+0x3c>)
- 8000332:	1ba4      	subs	r4, r4, r6
- 8000334:	10a4      	asrs	r4, r4, #2
- 8000336:	2500      	movs	r5, #0
- 8000338:	42a5      	cmp	r5, r4
- 800033a:	d109      	bne.n	8000350 <__libc_init_array+0x24>
- 800033c:	4e0b      	ldr	r6, [pc, #44]	; (800036c <__libc_init_array+0x40>)
- 800033e:	4c0c      	ldr	r4, [pc, #48]	; (8000370 <__libc_init_array+0x44>)
- 8000340:	f000 f818 	bl	8000374 <_init>
- 8000344:	1ba4      	subs	r4, r4, r6
- 8000346:	10a4      	asrs	r4, r4, #2
- 8000348:	2500      	movs	r5, #0
- 800034a:	42a5      	cmp	r5, r4
- 800034c:	d105      	bne.n	800035a <__libc_init_array+0x2e>
- 800034e:	bd70      	pop	{r4, r5, r6, pc}
- 8000350:	f856 3025 	ldr.w	r3, [r6, r5, lsl #2]
- 8000354:	4798      	blx	r3
- 8000356:	3501      	adds	r5, #1
- 8000358:	e7ee      	b.n	8000338 <__libc_init_array+0xc>
- 800035a:	f856 3025 	ldr.w	r3, [r6, r5, lsl #2]
- 800035e:	4798      	blx	r3
- 8000360:	3501      	adds	r5, #1
- 8000362:	e7f2      	b.n	800034a <__libc_init_array+0x1e>
- 8000364:	080003a0 	.word	0x080003a0
- 8000368:	080003a0 	.word	0x080003a0
- 800036c:	080003a0 	.word	0x080003a0
- 8000370:	080003a4 	.word	0x080003a4
+08000328 <__libc_init_array>:
+ 8000328:	b570      	push	{r4, r5, r6, lr}
+ 800032a:	4e0d      	ldr	r6, [pc, #52]	; (8000360 <__libc_init_array+0x38>)
+ 800032c:	4c0d      	ldr	r4, [pc, #52]	; (8000364 <__libc_init_array+0x3c>)
+ 800032e:	1ba4      	subs	r4, r4, r6
+ 8000330:	10a4      	asrs	r4, r4, #2
+ 8000332:	2500      	movs	r5, #0
+ 8000334:	42a5      	cmp	r5, r4
+ 8000336:	d109      	bne.n	800034c <__libc_init_array+0x24>
+ 8000338:	4e0b      	ldr	r6, [pc, #44]	; (8000368 <__libc_init_array+0x40>)
+ 800033a:	4c0c      	ldr	r4, [pc, #48]	; (800036c <__libc_init_array+0x44>)
+ 800033c:	f000 f818 	bl	8000370 <_init>
+ 8000340:	1ba4      	subs	r4, r4, r6
+ 8000342:	10a4      	asrs	r4, r4, #2
+ 8000344:	2500      	movs	r5, #0
+ 8000346:	42a5      	cmp	r5, r4
+ 8000348:	d105      	bne.n	8000356 <__libc_init_array+0x2e>
+ 800034a:	bd70      	pop	{r4, r5, r6, pc}
+ 800034c:	f856 3025 	ldr.w	r3, [r6, r5, lsl #2]
+ 8000350:	4798      	blx	r3
+ 8000352:	3501      	adds	r5, #1
+ 8000354:	e7ee      	b.n	8000334 <__libc_init_array+0xc>
+ 8000356:	f856 3025 	ldr.w	r3, [r6, r5, lsl #2]
+ 800035a:	4798      	blx	r3
+ 800035c:	3501      	adds	r5, #1
+ 800035e:	e7f2      	b.n	8000346 <__libc_init_array+0x1e>
+ 8000360:	08000398 	.word	0x08000398
+ 8000364:	08000398 	.word	0x08000398
+ 8000368:	08000398 	.word	0x08000398
+ 800036c:	0800039c 	.word	0x0800039c
 
-08000374 <_init>:
- 8000374:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8000376:	bf00      	nop
- 8000378:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 800037a:	bc08      	pop	{r3}
- 800037c:	469e      	mov	lr, r3
- 800037e:	4770      	bx	lr
+08000370 <_init>:
+ 8000370:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8000372:	bf00      	nop
+ 8000374:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000376:	bc08      	pop	{r3}
+ 8000378:	469e      	mov	lr, r3
+ 800037a:	4770      	bx	lr
 
-08000380 <_fini>:
- 8000380:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8000382:	bf00      	nop
- 8000384:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8000386:	bc08      	pop	{r3}
- 8000388:	469e      	mov	lr, r3
- 800038a:	4770      	bx	lr
- 800038c:	0000      	movs	r0, r0
-	...
+0800037c <_fini>:
+ 800037c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800037e:	bf00      	nop
+ 8000380:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000382:	bc08      	pop	{r3}
+ 8000384:	469e      	mov	lr, r3
+ 8000386:	4770      	bx	lr

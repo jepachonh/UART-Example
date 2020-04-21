@@ -42,7 +42,7 @@ int main(void)
      * TX/RX BR = 8000000/9600=833.33
      * 833.33d = 0341hex
      */
-    USART2->BRR |= 0x0341;
+    USART2->BRR |= 0x01A0;
     // Enable USART2  UE, bit 0
     USART2->CR1 |= (1 << 0);
 
